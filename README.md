@@ -5,6 +5,7 @@ A little utility to throttle calls to a block in ObjC. This is great for many us
 
 Simply call it like this:
 
+```objc
     void (^myThrottledBlock) = 
         [DGBlockThrottle throttledBlock: myCodeBlock
                                 onQueue: dispatch_get_main_queue()
@@ -13,6 +14,7 @@ Simply call it like this:
                                trailing: YES];
     
     // Now we can call `myThrottledBlock()` many times, and `myCodeBlock` will only be called once every 300 ms!
+```
 
 Arguments:
 

@@ -3,20 +3,20 @@ DGBlockThrottle
 
 A little utility to throttle calls to a block in ObjC. This is great for many uses, one of the most common is handling progress of a `NSURLConnection` request. Because you may receive many calls for new bytes, and may want to make sure you only call the progress delegate/block once every 150ms or so.
 
-Simple call it like this:
+Simply call it like this:
+
     [DGBlockThrottle throttledBlock: myCodeBlock
                             onQueue: dispatch_get_main_queue()
-                       wait: 0.3
-                    leading: NO
-                   trailing: YES];
+                            wait: 0.3
+                            leading: NO
+                            trailing: YES];
 
-The `throttledBlock` is obviously the block that you want to throttle. The only kind of block accepted is a `void` returning, no-arguments block.
+Arguments:
 
-The `wait` argument is the amount of time (in seconds) to wait between calls to your block.
-
-`leading` means whether you want the first call to the throttle block to execute your block or not. This allows 
-
-`trailing` means whether you want to have another call to your block issued after you have stopped calling the throttled block.
+* `throttledBlock` is obviously the block that you want to throttle. The only kind of block accepted is a `void` returning, no-arguments block.
+* `wait` is the amount of time (in seconds) to wait between calls to your block.
+* `leading` means whether you want the first call to the throttle block to execute your block or not. This allows 
+* `trailing` means whether you want to have another call to your block issued after you have stopped calling the throttled block.
 
 If you call the override of `[DGBlockThrottle throttledBlock:onQueue:wait:]` then the default is `leading: NO` and `trailing: YES`
 
